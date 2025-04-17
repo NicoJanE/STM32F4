@@ -1,8 +1,8 @@
 # A change in this file, NEEDS a rebuild!
 #
 
-title: <font size="6"><span style="color:#FFD700">D</span>ocker <span style="color:#FFA500">T</span>emplate <span style="color:#FF7F50">S</span>tack YXXX </font>
-description: <b><i><font size="3">A Docker container for XXX projects</span></font></i></b>
+title: <font size="6"><span style="color:#FFD700">D</span>ocker <span style="color:#FFA500">T</span>emplate <span style="color:#FF7F50">S</span>tack STM32-F4 </font>
+description: <b><i><font size="3">A Docker container for microcontroller bare-bone  projects</span></font></i></b>
 show_downloads: true
 google_analytics:
 theme: jekyll-theme-architect
