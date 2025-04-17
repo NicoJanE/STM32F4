@@ -30,7 +30,7 @@ You can use this container to start programming and experimenting in your local 
 
 - Setup instructions for the Docker container, as well as build and development instructions for use with **Visual Studio Code**, can be found here:
   - [local](./Howtos/howto_create_a_dev_container)
-  - [remote](https://nicojane.github.io/PHP-Development-Template-Stack/Howtos/project-setup)
+  - [remote](https://nicojane.github.io/STM32F4/Howtos/howto_create_A_dev_container)
 
 ##### *Alternative DTS containers can be found here: [remote](https://nicojane.github.io/Docker-Template-Stacks-Home/)*
 

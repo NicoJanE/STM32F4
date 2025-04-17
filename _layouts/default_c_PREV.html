@@ -18,9 +18,9 @@
 
   <body>
     <header>
-      <div class="inner">
-        <a href="{{ '/' | absolute_url }}">
-          <h1>{{ site.title | default: site.github.repository_name }}</h1>
+      <div class="inner" >
+        <a  href="{{ '/' | absolute_url }}">
+          <h1 style="min-width: 720px;"  >{{ site.title | default: site.github.repository_name }}</h1>
         </a>
         <h2>{{ site.description | default: site.github.project_tagline }}</h2>
         {% if site.github.is_project_page %}
@@ -40,7 +40,9 @@
          <h3 class="sq style="--font-style: bold;" >Quick links</h3>
           <ul class="sq">
           	{% if page.name == "index.md" %}
-				<li class="sm1"><a href="./index.html"><span class="sel"> Home (SubSite)</span></a> </li>		<!-- NJE -->	
+				{% if site.index_hide_home == true %}
+					<li class="sm1"><a href="./index.html"><span class="sel"> Home (SubSite)</span></a> </li>		
+				{% endif %}	
 				{% for RefPage in page.RefPages %}			  
 					<li class="sm1"><a href="./{{site.BaseDir}}/{{RefPage}}.html">{{ RefPage }}</a> </li>			
 				{% endfor %}			
