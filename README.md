@@ -34,4 +34,4 @@ You can use this container to start programming and experimenting in your local 
 
 ##### *Alternative DTS containers can be found here: [remote](https://nicojane.github.io/Docker-Template-Stacks-Home/)*
 
-Version: 0.2
+version: 0.2
