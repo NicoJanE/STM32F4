@@ -37,3 +37,5 @@ You can use this container to start programming and experimenting in your local 
   - [remote](https://nicojane.github.io/PHP-Development-Template-Stack/Howtos/project-setup)
 
 ##### *Alternative DTS containers can be found here: [remote](https://nicojane.github.io/Docker-Template-Stacks-Home/)*
+
+Version: 0.2
