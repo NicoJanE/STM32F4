@@ -1,0 +1,23 @@
+{
+    "files.associations": {
+        "registers.h": "c",
+        "stat.h": "c",
+        "general.h": "c",
+        "template.h": "c",
+        "stdlib.h": "c",
+        "syscall.h": "c",
+        "syscalls.h": "c",
+        "stdint.h": "c",
+        "main.h": "c",
+        "init_stm64f6.h": "c",
+        "init_stm32f4.h": "c",
+        "base_app_factory.h": "c",
+        "app1_main.h": "c",
+        "startup.h": "c",
+        "app1_factory.h": "c",
+        "app2_initialize.h": "c",
+        "app1_initialize.h": "c",
+        "app2_main.h": "c",
+        "app2_factory.h": "c"
+    }
+}

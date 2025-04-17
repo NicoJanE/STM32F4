@@ -1,0 +1,108 @@
+/* 
+
+This file is part of: **STM32F4 Template Stack**_
+Copyright (c) 2025 Nico Jan Eelhart_
+This source code is licensed under the MIT License found in the  'LICENSE.md' file in the root directory of this source tree.
+ 
+Some header files in this project are © STMicroelectronics and used under their permissive license. See license notices in each file, and refer to:
+https://www.st.com/en/microcontrollers-microprocessors/stm32f4-series.html_	
+
+*/
+
+{
+    "version": "2.0.0",
+    "tasks": [
+      {
+        "label": "STM32-Build (FULL)",
+        "type": "shell",
+        "command": "clear && echo \"\nFULL BUILD\" && make",
+        "group": "build",
+        "problemMatcher": []
+      },
+      {
+        "label": "Build (Incremental)",
+        "type": "shell",
+        "command": "clear && echo \"\nINCREMENTAL BUILD\" &&make build",
+        "group": "build",
+        "problemMatcher": []
+      },
+
+      // Plain version no auto close
+//    { 
+//      "label": "STM32-Build (Incremental & Parallel -j12)",
+//      "type": "shell",
+//      "command": "clear && echo \"\\nINCREMENTAL PARALLEL BUILD\" && make build -j12",
+//      "group": 
+//      {
+//        "kind": "build",
+//        "isDefault": true       // Acts on:  Ctrl+Shift+B OR Terminal -> Run Build Task
+//      },
+//      "problemMatcher": []
+//    }, 
+//    
+//
+    // EXPERIMENTAL, close the terminal automatically after 10 second in case of successful build
+    // depends on: presentation and the '&& sleep 10' in the command.
+    // If this does NOT work for you, revert to plain version above.
+      {
+        "label": "STM32-Build (Incremental & Parallel -j12 auto close)",
+        "type": "shell",
+        "command": "clear && echo \"\nINCREMENTAL PARALLEL BUILD\" && make build -j12 && printf \"\\nSUCCESS!\\n\\t - Automatic close in 10 seconds\\n\" && sleep 10",
+        "options": {
+          "shell": {
+            "executable": "bash",
+            "args": ["-c"]
+          }
+        },
+        "presentation": {
+          "panel": "new",
+          "reveal": "always",
+          "showReuseMessage": false,
+          "close": true
+        },
+        "group": {
+          "kind": "build",
+          "isDefault": true
+        },
+        "problemMatcher": []
+      },
+
+      {
+        "label": "STM32-Size",
+        "type": "shell",
+        "command": "make size",
+        "group": "test",
+        "problemMatcher": []
+      },
+      {
+        "label": "STM32-Disassemble",
+        "type": "shell",
+        "command": "make disass",
+        "group": "test",
+        "problemMatcher": []
+      },
+      {
+        "label": "STM32-Debug(Manual)",
+        "type": "shell",
+        "command": "make debug",
+        "group": "test",
+        "problemMatcher": []
+      },
+      {
+        "label": "STM32-Burn (Flash)",
+        "type": "shell",
+        "command": "make burn",
+        "group": "build",
+        "problemMatcher": []
+      },
+      {
+        "label": "STM32-Clean",
+        "type": "shell",
+        "command": "make clean",
+        "group": "build",
+        "problemMatcher": []
+      }
+    ],
+    
+  }
+  

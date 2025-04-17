@@ -1,0 +1,30 @@
+version: "3.8"
+
+services:
+  stm32-dev-v2:
+    build: .
+    container_name: stm32-dev-v2
+# Granting the container access to the USB device is necessary for flashing the STM32 device    
+    privileged: true
+    devices:
+# Make sure to change the USB device path to the one that corresponds to your STM32 device    
+      - "/dev/bus/usb:/dev/bus/usb"
+    volumes:
+      - ./code-files/:/workspace
+      - /dev:/dev
+#  Ensures interactive terminal support.      
+    stdin_open: true
+    tty: true
+
+
+
+# Build the container:
+#     docker-compose up --build
+#   Better: 
+#     docker compose -f docker-compose.yml up -d --build --force-recreate
+# Attach to thee container:
+#   docker exec -it stm32-dev bash
+# Stop the container:
+#   docker-compose down
+
+
