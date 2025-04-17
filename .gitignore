@@ -9,5 +9,5 @@
 !_config.yml
   
 # EXCEPTION any folder called ignore
-**!/_include/
+!/_include/
   
