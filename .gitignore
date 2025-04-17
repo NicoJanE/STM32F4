@@ -8,6 +8,7 @@
 !/_layouts/
 !_config.yml
   
-# EXCEPTION any folder called ignore
-!/_include/
+# EXCEPTION  folders _include 
+!**/_include/
+!**/_include/**
   
