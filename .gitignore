@@ -6,5 +6,6 @@
 
 # EXCEPTION: allow the root-level folder '_layouts/'
 !/_layouts/
+!/_config.yml/
 # EXCEPTION any folder called ignore
 **/_include/
