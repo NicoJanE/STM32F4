@@ -60,7 +60,7 @@ inline void get_user_name(void)
 	int  len = 50;    
 	
 	printf("Enter your name <CR>: ");        // Use _read to get the input          
-	_read(0, name, len);                     // 0 refers to stdin (keyboard input)  
+//	_read(0, name, len);                     // 0 refers to stdin (keyboard input)   ENABLE THIS TO READ FROM THE TERMINAL
 	printf("\r\nYou gave me:, %s!", name);   // Print the name entered by the user  
 
 }
