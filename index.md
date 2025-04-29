@@ -6,20 +6,22 @@ RefPages:
 
 # What
 
-A minimal yet flexible bare-metal C program for STM32F4-Discovery and related STM32F4 devices.
+A minimal yet flexible bare-metal C/C++ program for STM32F4-Discovery and related STM32F4 devices.
 
 ## ✨ Features
 
--   C++ Project (project-1_cpp)
   -   Built using `make` (no IDE dependency, VSC supported)
-  -   Demonstrates polymorphic design in C to support multiple independent applications (`app1`, `app2`)
-  -   Each app can be configured separately to perform its task
-  -   Demonstrates:
+  -   C Project (project-1_c)   
+    -   Demonstrates polymorphic design in C to support multiple independent applications (`app1`, `app2`)
+    -   Each app can be configured separately to perform its task
+    -   Demonstrates:
       - USART communication (tested with PuTTY)
       - Blinking LEDs
-  -   Includes standard C runtime integration (e.g., `malloc`, `printf`, `scanf`) through custom system call implementations
+      - Includes standard C runtime integration (e.g., `malloc`, `printf`, `scanf`) through custom system call implementations
   -   C++ Project (project-1_cpp)
       - Same basic functions as in the C project. Startup code in C rest in C++
+      - Improved Makefile
+      - Utility to display include dependencies
 
 ### Flashing & Debugging
 
