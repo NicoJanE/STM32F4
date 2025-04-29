@@ -21,8 +21,6 @@ This project sets up a Linux (Debian) container running on Docker Desktop for Wi
 Example startup programs are included for the **STM32F4-Discovery** board.
 
 ## ✨ Features
-
-## ✨ Features
   - Project with Bare-metal C/C++ projects demonstrating:
     - Custom **linker script** usage
     - How **startup** code integrates with the linker script
