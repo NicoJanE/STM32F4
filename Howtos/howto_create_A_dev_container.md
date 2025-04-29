@@ -22,12 +22,13 @@ Example startup programs are included for the **STM32F4-Discovery** board.
 
 ## ✨ Features
 
-- Bare-metal C program demonstrating:
+- Project with Bare-metal C project demonstrating:
   - Custom **linker script** usage
   - How **startup** code integrates with the linker script
   - Implementation of C system calls for functions like `printf()` and `scanf()`
   - A working USART (serial interface) for serial input\output (e.g., PuTTY)
   - Use of memory-mapped hardware registers
+- Project with Bare-metal C++ project demonstrating functional the same as the C-Project
 - A **makefile** to build the program
 - Preconfigured **Visual Studio Code files**:
   - `launch.json` to flash and debug the program
@@ -190,10 +191,11 @@ When for a reason the above flash fails or your unsure it went well you can docn
 Make sure the following **extensions** are installed and activated (inside the container):
 
 - C/C++ Extention Pack (ms-vscode.cpptools)
-- Remote- containers ()global)
+- Remote- containers 
 - Cortex-Debug (OpenOCD) (marus25.cortex-debug)
 - Make file tools(ms-vscode.makefile-tools)
 - Arm Assembly (dan-c-underwood.arm)
+- live server, optional for html content and images (ritwickdey.LiveServer)
 
 ## 4.1 Open container
 
@@ -202,7 +204,11 @@ Make sure the following **extensions** are installed and activated (inside the c
 
 ## 4.2  Open the following folder inside the container
 
-/workspace/code-files/projects/project-1
+Two projects are provided:
+- /workspace/code-files/projects/project-1_c
+A sample C project
+- /workspace/code-files/projects/project-1_cpp
+A sample C++ Project
 
 ## 4.3 Build the Project
 

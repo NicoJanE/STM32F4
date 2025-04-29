@@ -1,17 +1,24 @@
-
+---
+layout: default_c
+RefPages:
+ - howto_create_A_dev_container
+--- 
 # What
 
 A minimal yet flexible bare-metal C program for STM32F4-Discovery and related STM32F4 devices.
 
 ## ✨ Features
 
-   Built using `make` (no IDE dependency)
--   Demonstrates polymorphic design in C to support multiple independent applications (`app1`, `app2`)
--   Each app can be configured separately to perform its task
--   Demonstrates:
+   Built using `make` (no IDE dependency, VSC supported)
+-   C Project (project-1_c)   
+  -   Demonstrates polymorphic design in C to support multiple independent applications (`app1`, `app2`)
+  -   Each app can be configured separately to perform its task
+  -   Demonstrates:
     - USART communication (tested with PuTTY)
     - Blinking LEDs
--   Includes standard C runtime integration (e.g., `malloc`, `printf`, `scanf`) through custom system call implementations
+  -   Includes standard C runtime integration (e.g., `malloc`, `printf`, `scanf`) through custom system call implementations
+-   C++ Project (project-1_cpp)
+  - Same basic functions as in the C project. Startup code in C rest in C++.
 
 ### Flashing & Debugging
 
@@ -30,8 +37,6 @@ You can use this container to start programming and experimenting in your local 
 
 - Setup instructions for the Docker container, as well as build and development instructions for use with **Visual Studio Code**, can be found here:
   - [local](./Howtos/howto_create_a_dev_container)
-  - [remote](https://nicojane.github.io/STM32F4/Howtos/howto_create_A_dev_container)
+  - [remote](https://nicojane.github.io/PHP-Development-Template-Stack/Howtos/project-setup)
 
 ##### *Alternative DTS containers can be found here: [remote](https://nicojane.github.io/Docker-Template-Stacks-Home/)*
-
-version: 0.2

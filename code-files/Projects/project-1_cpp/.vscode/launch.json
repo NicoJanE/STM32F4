@@ -1,0 +1,127 @@
+/* 
+
+This file is part of: **STM32F4 Template Stack**_
+Copyright (c) 2025 Nico Jan Eelhart_
+This source code is licensed under the MIT License found in the  'LICENSE.md' file in the root directory of this source tree.
+ 
+Some header files in this project are © STMicroelectronics and used under their permissive license. See license notices in each file, and refer to:
+https://www.st.com/en/microcontrollers-microprocessors/stm32f4-series.html_	
+
+*/
+
+{
+    "version": "0.2.0",
+    "configurations": [
+        {            
+            "name": "STM32-Debug",
+            "type": "cortex-debug",
+            "request": "launch",            // Make sure to use: 'launch' instead of 'attach'
+            "servertype": "openocd",
+            "cwd": "${workspaceFolder}",
+            "executable": "./bin/template.elf",
+//            "device": "STM32F4",          // General target
+            "device": "STM32F407VG",        // Recommend. This is a specific model of the STM32F4 family (STM32F4-Discovery)
+            "showDevDebugOutput":"raw",     // vscode, raw =>Show more detailed debug output in the debug console (https://github.com/Marus/cortex-debug/blob/master/debug_attributes.md)
+            "showDisassembly": "always",   
+            // swd: Serial Wire Debug, a 2-wire interface (clock and data) used to communicate with the 
+            // microcontroller for debugging and programming purposes. usage defined interface/stlink.cfg
+            // alternatively use: "interface": "jlink",
+            // "interface": "swd",           
+            "gdbTarget": "localhost:3333",  // OpenOCD GDB server running on the local machine and waiting for GDB connections on port 3333.        
+            "liveWatch": true,              // Enable liveWatch
+
+            "configFiles": [
+                "interface/stlink.cfg",
+                "target/stm32f4x.cfg"
+            ],
+            "gdbPath": "/usr/bin/gdb-multiarch",        // Don't have the: 'arm-none-eabi-gdb' (seems difficult to install)
+            "preLaunchCommands": [
+                "set mem inaccessible-by-default off",
+                "monitor reset halt",                   // Ensure a controlled reset before debugging, to prevent followup debug issus
+            ],
+            "postLaunchCommands": [
+                "monitor reset halt",                   // Ensure a controlled reset after debugging, to prevent followup debug issus
+                "monitor sleep 200",                    // Wait for the target to stabilize after reset
+                 "monitor halt"
+            ],
+            "postRestartCommands": [
+                 "monitor reset halt"                   // Ensures a clean state when restarting debugging.
+            ],
+            "openOCDLaunchCommands": [
+                "init",
+                " reset init",
+                " sleep 200",
+                //" arm semihosting enable",            // Slow and not be default supported in syscalls.c !
+                
+             ],                          
+        },
+                
+    ],
+    
+    // Inputs section
+    "inputs": [
+    {
+      "id": "sourceFile",
+      "type": "promptString",
+      "description": "Enter the source file name (e.g., main.c)",
+      "default": "main.c"
+    }
+  ]
+
+    
+}
+
+// Debug in VSC
+//
+// PRECONDITIONS:
+// 1.) in wsl CLI  check with: 'lsusb' if the device is connected
+//   a message like: 'Bus 001 Device 002: ID 0483:3748 STMicroelectronics ST-LINK/V2'
+//
+// 2.) if not in ***PowerShell*** use: usbipd attach --wsl Ubuntu-docker-App-X11-Win32Dev --busid 3-3
+// Change 'wsl name' and 'busid', if needed.
+//
+//       Note this command must be run from the Windows host in PowerShell. But you can run a powershell command from WSL with:
+//           PowerShell.exe -Command "usbipd attach --wsl Ubuntu-docker-App-X11-Win32Dev --busid 3-3"
+
+// TO START DEBUGGING
+// 1.) DONT DO THIS MANUALLY when Using VSC Debug
+//      it is done implicite by(Debug STM32), for manually debug this is needed:  openocd -f interface/stlink.cfg -f target/stm32f4x.cfg
+// 2.) in VSC start debugging
+
+// Configuration:
+// OPenOCD  configration files can be found:
+// - /usr/share/openocd/scripts/interface/stlink.cfg
+// - /usr/share/openocd/scripts/target/stm32f4x.cfg
+
+// MANUALLY DEBUGGING
+// 1.) MAke sure the precondition apply
+// 2.) `openocd -f interface/stlink.cfg -f target/stm32f4x.cfg`
+// 3.) `arm-none-eabi-gdb main.elf`
+//      Note that: 'arm-none-eabi-gdb' could also be used if it works on your system
+//
+// 4.) In the gdb console:
+//
+//      target remote localhost:3333
+//      load
+//      monitor reset init
+//      break main      # optional, see debug below
+//      continue
+ 
+
+// REMARK
+// I don't known why it currently works only with: 'gdb-multiarch'
+//      -  gdb-multiarch is which is a general-purpose GDB that can be used for  multiple architectures)
+// 'arm-none-eabi-gdb' is not working
+//     -  arm-none-eabi-gdb is a GDB that is specifically built for ARM targets
+
+/*
+sudo apt install doxygen graphviz         # Or brew on macOS
+doxygen -g                                # Generate Doxyfile
+# Edit Doxyfile:
+#   HAVE_DOT = YES
+#   INCLUDE_GRAPH = YES
+#   INCLUDED_BY_GRAPH = YES
+#   INPUT = ./src
+#   RECURSIVE  = YES
+doxygen
+*/

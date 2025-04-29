@@ -1,6 +1,7 @@
 FROM debian:stable
 
 # Install dependencies
+# xdg-utilsis for live server in VSC (ritwickdey.LiveServer) It is a bit overhead yes
 RUN apt-get update && apt-get install -y \
     build-essential \
     cmake \
@@ -15,6 +16,8 @@ RUN apt-get update && apt-get install -y \
     git wget curl unzip git \
     gdb-multiarch gcc-arm-none-eabi \
     binutils-multiarch file telnet \
+    xdg-utils \
+    graphviz \
     && apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # NewLib(C Library for embedded systems)

@@ -1,0 +1,18 @@
+// See make file include, see 2 there
+{
+    "configurations": [
+      {
+        "name": "Linux",
+        "includePath": [
+          "${workspaceFolder}/src/_include",
+          "${workspaceFolder}/src/_include/*",
+          "${workspaceFolder}/src/_include/*/*",
+          "${workspaceFolder}/src/_include/*/*/*",
+          "${workspaceFolder}/src/_include/*/*/*/*",
+          // "${workspaceFolder}/src/_include/**"            //  Recursively include all subdirectories, I had issues with this
+        ]
+      }
+    ],
+    "version": 4
+  }
+  

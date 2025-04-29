@@ -10,13 +10,16 @@ A minimal yet flexible bare-metal C program for STM32F4-Discovery and related ST
 
 ## ✨ Features
 
-   Built using `make` (no IDE dependency)
--   Demonstrates polymorphic design in C to support multiple independent applications (`app1`, `app2`)
--   Each app can be configured separately to perform its task
--   Demonstrates:
-    - USART communication (tested with PuTTY)
-    - Blinking LEDs
--   Includes standard C runtime integration (e.g., `malloc`, `printf`, `scanf`) through custom system call implementations
+-   C++ Project (project-1_cpp)
+  -   Built using `make` (no IDE dependency, VSC supported)
+  -   Demonstrates polymorphic design in C to support multiple independent applications (`app1`, `app2`)
+  -   Each app can be configured separately to perform its task
+  -   Demonstrates:
+      - USART communication (tested with PuTTY)
+      - Blinking LEDs
+  -   Includes standard C runtime integration (e.g., `malloc`, `printf`, `scanf`) through custom system call implementations
+  -   C++ Project (project-1_cpp)
+      - Same basic functions as in the C project. Startup code in C rest in C++
 
 ### Flashing & Debugging
 
@@ -39,4 +42,4 @@ You can use this container to start programming and experimenting in your local 
 
 ##### *Alternative DTS containers can be found here: [remote](https://nicojane.github.io/Docker-Template-Stacks-Home/)*
 
-Version: 0.2
+Version: 0.3

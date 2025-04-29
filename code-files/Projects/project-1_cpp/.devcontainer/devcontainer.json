@@ -1,0 +1,14 @@
+{
+    "name": "stm32-dev-v03",
+    "dockerComposeFile": "../docker-compose.yml",
+    "service": "stm32-dev-v03",
+    "workspaceFolder": "/workspace", 
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "marus25.cortex-debug"
+            ]
+        }
+    }
+}
+  

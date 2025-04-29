@@ -1,0 +1,9 @@
+[
+    {
+        "key": "f4", // Make sure we can turn the errorSquiggleson on and of
+        "command": "workbench.action.openGlobalSettings",
+        "args": {
+            "query": "C_Cpp.errorSquiggles"
+        }
+    }
+]
