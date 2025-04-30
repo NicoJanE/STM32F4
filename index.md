@@ -11,7 +11,7 @@ A minimal yet flexible bare-metal C/C++ project for STM32F4-Discovery and relate
 ## ✨ Features
 
   - Built using make (no IDE dependency, Visual Studio Code supported)
-  - C Project (***./projects/project-1_c-1_c***)   
+  - C Project (***./projects/project-1_c***)   
     - Polymorphic design in C to support multiple independent applications  (`app1`, `app2`)
     - Each app can be configured separately to perform its task
     - Demonstrates:
