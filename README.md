@@ -33,8 +33,8 @@ This project serves as a clean, extensible foundation for low-level STM32 develo
 You can use this **Docker** container(Debian) to start developing your device application.
 
 - Instructions for setting up the Docker container and using it with Visual Studio Code can be found here:
-  - [local](./Howtos/howto_create_a_dev_container)
-  - [remote](https://nicojane.github.io/PHP-Development-Template-Stack/Howtos/project-setup)
+  - [local](./Howtos/howto_create_a_dev_container)  
+  - [remote](https://nicojane.github.io/STM32F4/Howtos/howto_create_A_dev_container.html)
 
 <br>
 
