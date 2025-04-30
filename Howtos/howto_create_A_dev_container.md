@@ -17,29 +17,27 @@ https://www.st.com/en/microcontrollers-microprocessors/stm32f4-series.html_
 
 # 1. What
 
-This project sets up a Linux (Debian) container running on Docker Desktop for Windows, tailored for **STM32 MCU development**. It uses the **STM32 ST-Link** to flash programs to the device.
-Example startup programs are included for the **STM32F4-Discovery** board.
+This project sets up a Linux (Debian) container running on Docker Desktop for Windows, tailored for **STM32 MCU development**. It uses the **STM32 ST-Link** to flash programs to the device. ***Example*** startup programs are included for the **STM32F4-Discovery** board.
 
 ## ✨ Features
-  - Project with Bare-metal C/C++ projects demonstrating:
+  - Minimal yet flexible bare-metal C/C++ projects for STM32F4-Discovery and related STM32F4 devices, showing:
     - Custom **linker script** usage
     - How **startup** code integrates with the linker script
     - Implementation of C system calls for functions like `printf()` and `scanf()`
-    - A working USART (serial interface) for serial input\output (e.g., PuTTY)
+    - A working `USART` (serial interface) for serial input\output (e.g., PuTTY)
     - Use of memory-mapped hardware registers
-  - Built using `make` (no IDE dependency, VSC supported)
-  - C Project (project-1_c)   
-    - Demonstrates polymorphic design in C to support multiple independent applications (`app1`, `app2`)
-    - Each app can be configured separately to perform its task
+  - Built using make (no IDE dependency, Visual Studio Code supported)
+  - C project template (***./projects/project-1_c***)   
+    - Demonstrates polymorphic design in C to support multiple independent applications (`app1`, `app2`) Where each app can be configured wit different device initialization code or application initalization code
     - Demonstrates:
       - USART communication (tested with PuTTY)
       - Blinking LEDs
       - Includes standard C runtime integration (e.g., `malloc`, `printf`, `scanf`) through custom system call implementations
-  - C++ Project (project-1_cpp)
-      - Same basic functions as in the C project. Startup code in C rest in C++
+  - C++ project template (***./projects/project-1_cpp***)      
+      - Same basic functionality as the C project. Startup code in C; the rest in C++
       - Improved Makefile
       - Utility to display include dependencies
-  - Preconfigured **Visual Studio Code files**:
+  - Preconfigured **Visual Studio Code files** (***see paragraph 4***)
     - `launch.json` to flash and debug the program
     - `tasks.json` to build and run commands inside the container
 
@@ -251,4 +249,4 @@ You can use a terminal application like PuTTY to interact with the device on the
 
 ➡️ or more details, see the separate document accessible:  
 - [here local](DebugOutputTo_USART2)
-- [here remote](DebugOutputTo_USART2)
+- [here remote](https://nicojane.github.io/STM32F4/Howtos/DebugOutputTo_USART2)
