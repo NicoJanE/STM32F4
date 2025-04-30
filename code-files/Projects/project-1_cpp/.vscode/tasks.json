@@ -15,14 +15,14 @@ https://www.st.com/en/microcontrollers-microprocessors/stm32f4-series.html_
       {
         "label": "STM32-Build (FULL)",
         "type": "shell",
-        "command": "clear && echo \"\nFULL BUILD\" && make -f  ",
+        "command": "clear && echo \"\nFULL BUILD\" && make",
         "group": "build",
         "problemMatcher": []
       },
       {
         "label": "Build (Incremental)",
         "type": "shell",
-        "command": "clear && echo \"\nINCREMENTAL BUILD\" &&make -f    build",
+        "command": "clear && echo \"\nINCREMENTAL BUILD\" &&make  build",
         "group": "build",
         "problemMatcher": []
       },
