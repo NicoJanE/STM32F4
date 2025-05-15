@@ -18,6 +18,7 @@ RUN apt-get update && apt-get install -y \
     binutils-multiarch file telnet \
     xdg-utils \
     graphviz \
+    nano \
     && apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # NewLib(C Library for embedded systems)

@@ -70,10 +70,18 @@
 #
 
 
+# UTILITIES
+current_dir := $(shell pwd)														# Display the current working directory
+NEWLINE = $(shell if [ "$(OS)" = "Windows_NT" ]; then echo; else echo ""; fi) 	# Display utility. Determine new line symbol based on OS
 
-# Display utility. Determine new line symbol based on OS
-NEWLINE = $(shell if [ "$(OS)" = "Windows_NT" ]; then echo; else echo ""; fi)
-
+# TEXT COLORS. Define some color escape sequences
+COL_YELLOW 	= \033[1;33m
+COL_LGREEN 	= \033[1;32m
+COL_RED    	= \033[1;31m
+COL_RESET  	= \033[0m
+COL_LGRAY	= \033[1;30m
+COL_WHITE	= \033[0;37m
+COL_BLUE	= \033[0;36m
 # 1) C FILES LOCATIONS
 ROOT_SOURCE_DIR := ./src
 TARGET = template
@@ -85,13 +93,17 @@ SRCS += $(wildcard $(ROOT_SOURCE_DIR)/*/*/*/*.c) 									# includes all C files
 # OPTIONAL (Linux only) use the shell command  find all C files
 # SRCS := $(shell find ./src -name '*.c')
 #
-# OUTPUT C source files
-    $(info $(NEWLINE) )$(info $(NEWLINE) )
-    $(info These C files are build (same directory Layout is used, in output directory):)
-    $(info ==============================================================================)
-    $(info $(NEWLINE) )
-    $(foreach src, $(SRCS), $(info $(src)))  								
+																									
+# Marco to displays the used source files and header directories at the top, invoked by target: header    
+define print-header
+	@printf "$(COL_RESET)Source Files to be build:$(COL_LGRAY)\n"
+	@printf "%s\n" "$(SRCS)" | awk '{for(i=1;i<=NF;i++) print $$i}' # Remove extra spaces
+	
+	@printf "$(COL_RESET)\nHeader directories used:$(COL_LGRAY)\n"
+	@printf "%s\n" "$(SYSTEM_INCLUDE_DIRS)" | awk '{for(i=1;i<=NF;i++) print $$i}' # Remove extra spaces
 
+	@echo "\n\n$(COL_RESET)"
+endef																										 
 
 ## 2) 	INCLUDE FILE LOCATIONS frm the root folder and suport a 4 levels deep folder structure
 #	   ‼️Also update the 'includePath' in the file: 'c_cpp_properties.json'‼️
@@ -125,25 +137,16 @@ $(wildcard $(ROOT_INCLUDE_DIR)/*/*/*/*/)
 SYSTEM_INCLUDE_DIRS := $(patsubst %/,%,$(SYSTEM_INCLUDE_DIRS))
 INCLUDE_DIRS += $(patsubst %,-I%,$(SYSTEM_INCLUDE_DIRS))
 #
-#
+# 
 # OPTIONAL (Linux only) use the shell command  find all include subfolders
 # But curret version is more portable
 # include files, that contains the sub directories automatically(Linux)
 #	- Tip: Try the find command in your terminal
 # INCLUDE_DIRS := $(shell find ./include -type d | sed 's/^/-I/')
 #
-# OUTPUT C header files
-    $(info $(NEWLINE) )$(info $(NEWLINE) )								
-    $(info These header files are used:)
-    $(info ------------------------------------------------------------------------------)
-    $(info $(NEWLINE) )
-    $(foreach dir, $(INCLUDE_DIRS), $(info    $(dir)))						# Use to display (debug) include file locations
-    $(info $(NEWLINE) )$(info $(NEWLINE) )
-
 
 # 3) THE LINKER SCRIPT
 LINKER_SCRIPT = ./src/system/startup-code/stm32.ld
-
 
 # 4) Output directories and files
 BINDIR  := ./bin
@@ -209,19 +212,21 @@ DBG = gdb-multiarch
 
 # 8) Build targets
 #
-all: clean $(SRCS) build size
+all: clean header  print-cflags  print-ldflags build size	
 	@echo "Successfully finished..."
 
 build: $(TARGET).elf $(TARGET).hex $(TARGET).bin $(TARGET).lst
 
 $(TARGET).elf: $(OBJS)
+	@printf "\n$(COL_BLUE)[CC] Linking C object files:\n$(COL_WHITE)$(OBJS)  %s  $(COL_RESET)\n" $<
+	@printf "\n$(COL_BLUE)Linking Result in: $(TARGET).elf\n\n $(COL_RESET)"
 	@$(CC) $(OBJS) $(LDFLAGS) -o $@
 
 
 # Compile all C files
 $(OBJDIR)/%.o: %.c
 	@mkdir -p $(dir $@)
-	@printf "\nBUILDING: %s \n----------------------------------------------------------------------------------------------------------------------------\n"  $<
+	@printf "$(COL_YELLOW)[CC] Compiling C source: %s  $(COL_RED)\n" $<
 	@$(CC) $(CFLAGS) $(INCLUDE_DIRS) -c $< -o $@
 
 # Compile all assembly files
@@ -251,7 +256,9 @@ $(BINDIR)/%.lst: $(BINDIR)/%.elf
 # -	Prints the memory sizes of the  section used by program (defined in the linker script)
 # -	To monitor and manage your program's memory usage 
 size: $(TARGET).elf
+	@printf "$(COL_BLUE)\nMemory locations:\n $(COL_LGRAY)"  $<
 	@$(SIZE) $(TARGET).elf
+	@echo "$(COL_RESET)"					 
 
 # make disass
 # -	Creates a disassembly listing of the program 
@@ -276,8 +283,23 @@ burn: $(TARGET).bin
 	
 CLEAN_CMD = rm -R ./bin 
 clean:
-	@printf "CLEANING output directory:  \n  - Executing:\t%s\n" "$(CLEAN_CMD)"
+	@printf "\nCleaning output directory:$(COL_LGRAY) \n Executing:\t%s\n" "$(CLEAN_CMD)"
 	@$(CLEAN_CMD) && printf "\n"
 
+header:
+	@$(call print-header)
 
-.PHONY: all build size clean burn disass disass-all
+# Print output. Special target to print CFLAGS once
+print-cflags:
+	@printf "$(COL_YELLOW)Used C-Compiler options:$(COL_LGRAY)\n[CC] CFLAGS:"
+	@printf "%s\n " "$(CFLAGS)" | awk '{$$1=$$1; print}' 			 # Remove extra spaces
+	@echo "$(COL_RESET)"
+	
+
+# Print output. Special target to print LDFLAGS once
+print-ldflags:
+	@printf "$(COL_BLUE)Used Linking options:$(COL_LGRAY)\n[CC] LDFLAGS:"
+	@printf "%s\n " "$(LDFLAGS)" | awk '{$$1=$$1; print}' 			 # Remove extra spaces
+	@echo "$(COL_RESET)"
+
+.PHONY: all build size clean burn disass disass-all print-cflags print-ldflags header
