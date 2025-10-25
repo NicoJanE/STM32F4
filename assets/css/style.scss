@@ -363,4 +363,24 @@ Or
   transform: translateX(var(--nje-offset)) translateY(var(--nje-vmove2));
 }
 
-  
+
+
+/*
+  Okt 25 '25
+  Call: <span class=".nje-expect">  your text</span>    color: #007300;
+*/
+.nje-expect {
+  color: #080100a4;
+  font-size: 11px;
+  font-family: inherit;
+  white-space: nowrap;
+  vertical-align: middle;
+}
+.nje-expect::before {
+  font-size: 12px;
+  font-weight: 500; /* medium */
+  content: "◆ Expected result: ";
+  color: #06a406;
+  margin-left: 12px;
+  font-style: italic;
+}
