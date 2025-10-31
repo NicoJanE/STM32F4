@@ -4,7 +4,7 @@ RefPages:
  - howto_create_A_dev_container
 ---
 
-<br>
+<span class="nje-br"> </span>
 
 # STM32 <span style="color: #409EFF; font-size: 0.6em; font-style: italic;"> -  Docker bare-metal C/C++ project Container</span>
 
@@ -42,10 +42,9 @@ This project sets up a Linux (Debian) container running on Docker Desktop for Wi
 ### 🛠️ Build  container
 
 To build the docker container enter the root folder of the **STM32F4 project** and execute the following command:
+<pre class="nje-cmd-one-line"> docker-compose up --build</pre>
+<span class="nje-expect-indent1">This should create and start the container.</span>
 
-- <pre class="nje-cmd-one-line"> docker-compose up --build</pre>
-
-This should create and start the container.
 
 ### 🔌 Steps to expose the USB device to WSL
 
@@ -58,11 +57,7 @@ To connect the host USB to the Docker container, we must ensure the USB device i
 To expose the USB device from Windows to WSL, we use the utility driver **usbipd-win**. Open an **Administrator PowerShell** and run:
 
 <pre class="nje-cmd-one-line">usbipd list</pre>
-
-<span class="nje-ident"></span> *Expected results:*{: style="color: green;font-size:12px; "}
-<br><span class="nje-ident" style="--nje-number-of-spaces: 40px;"> </span><small>**&#9830;** This should return something like: </small>
-
-<pre class="nje-cmd-one-line-sm-ident" style="--nje-ident: 60px;">STM#@ DTLINK (i.e: 3-3)    # 3-3 is your **BUSID** </pre>
+<span class="nje-expect-indent1"> This should return something like: ***STM#@ DTLINK (i.e: 3-3)    # 3-3 is your BUSID***</span>
 
 > **Note**{: style="color: black;font-size:13px; "}
 > <small> When `usbipd` is not installed, download  it from [usbipd-win GitHub Releases]( https://github.com/dorssel/usbipd-win/releases)  <br></small>
@@ -71,29 +66,22 @@ To expose the USB device from Windows to WSL, we use the utility driver **usbipd
 First, identify which WSL distro is used by Docker Desktop:
 
 <pre class="nje-cmd-one-line">Docker Desktop → Settings → Resources → WSL Integration</pre>
+<span class="nje-expect-indent1"> This should return something like: **Ubuntu-docker-App-X11-Win32Dev***</span>
 
-<span class="nje-ident"></span> *Example,expected results:*{: style="color: green;font-size:12px; "}
-<pre class="nje-cmd-one-line-sm-ident" style="--nje-ident: 60px;">Ubuntu-docker-App-X11-Win32Dev</pre>
-
-<br>
 Then, in an **Administrator PowerShell**, use the commands below. Replace the `BUSID` (e.g., 3-3) and the WSL distro name with the ones you found earlier:
 
 <pre class="nje-cmd-multi-line">
 usbipd bind --busid 3-3    # 1e share the BUS ID device
 usbipd attach --wsl Ubuntu-docker-App-X11-Win32Dev --busid  3-3
 </pre>
+<span class="nje-expect-indent1"> Running `usbipd list` again should show: ***STATE: Attached***</span>
 
-<span class="nje-ident"></span> *Expected results:*{: style="color: green;font-size:12px; "}
-<br><span class="nje-ident" style="--nje-number-of-spaces: 40px;"> </span><small>**&#9830;** Running `usbipd list` again should show: **STATE: Attached** </small>
-<pre class="nje-cmd-one-line">usbipd list // Should now have **STATE: Attached**</pre>
 
-<br>
-<details closed>  
-  <summary class="clickable-summary">🔌 
-  **Side note**: Is USB connected, disconnect USB (WSL/VSC)
-  </summary> 
-To check if **WSL** can find the USB
-
+<details class="nje-remark-box">
+  <summary> Is USB connected, disconnect USB (WSL/VSC)
+  </summary>
+  
+  **Check the USB status**  
 - Start the WSL
   - `wsl -d Ubuntu-docker-App-X11-Win32Dev  # Also use: wsl -l`
   - Or start a terminal from within Visual Studio Code (see section 4) and run:
@@ -103,13 +91,13 @@ To check if **WSL** can find the USB
   -for more details run:
     - `dmesg | grep -i usb`
 
-**Detach the USB**
-
+**Detach the USB**  
 From Admin **PowerShell**:
 
 - `usbipd detach --busid <BUSID>`
 
 </details>
+<br />
 
 ---
 
@@ -118,7 +106,7 @@ From Admin **PowerShell**:
 This section describes a few commands to manually test the environment using the Docker CLI.  
 The actual development workflow is intended to be used from **Visual Studio Code** (see Section 4), which provides the same functionality and much more.
 
-### ⚙️ Build the sample project
+### ⚙️ Build the sample project111
 
 In the directory: **/workspace/Projects/Project** execute the following command:  
 <pre class="nje-cmd-one-line" style="margin-left: 0px;">make</pre>
@@ -134,14 +122,13 @@ In a **new** Docker CLI terminal, start OpenOCD to listen for debugger (GDB) con
 <pre class="nje-cmd-one-line"  style="margin-left: 0px;">openocd -f interface/stlink.cfg -f target/stm32f4x.cfg`  *NOT NEED VSC DOES THIS IMPLICITE!* </pre>
 <span class="nje-expect">You should see: **Info : Listening on port 3333 for gdb connections** and OpenOCD waits for GDB commands</span>
 
-<details>    
-  <summary class="clickable-summary" style="margin-left: 40px;margin-top:-10px;margin-bottom:0px;">
-  <span  class="summary-icon"></span> <!-- Square Symbol -->
-   **Warning:**{: style="color: orange;font-size:15px; "} No Need for it in VS Code
+<details class="nje-warn-box">
+  <summary>No Need for it in VS Code
   </summary>
-
-  ><small>This command is **not needed** when using Visual Studio Code, it is done automatically. Running this manually while debugging in VS Code will cause an error</small>
+  This command is **not needed** when using Visual Studio Code, it is done automatically. Running this manually while debugging in VS Code will cause an error
 </details>
+
+<span class="nje-br"> </span>
 
 In **another terminal** (inside the container), from the **./bin** directory, run:
 <pre class="nje-cmd-one-line" style="margin-left: 0px;">gdb-multiarch project.elf  </pre>
@@ -179,14 +166,14 @@ Other sample
 
 To manually flash your device you can use make, Run:
 <pre class="nje-cmd-one-line">make burn</pre>
+<span class="nje-br"> </span>
 
-<details closed>  
-  <summary class="clickable-summary" style="margin-left: 25px;margin-top:-14px;"> 
-  <br>**Side note**: Burn with Window ST-Link Utility
+<details class="nje-remark-box">
+  <summary>Burn with Window ST-Link Utility
   </summary>
-
-><small>When for a reason the above flash fails or your unsure it went well you can docnload ths STM32 utility andflash the program with it. Use the file open command, select the **.bin** file that was created with the ***make*** file  and, select the oprion **Program and Verify** this should load the program, verify it and after that reset the device so it start to run(there are some settings that control this so make sure to check these!)</small>
+  When for a reason the above flash fails or your unsure it went well you can docnload ths STM32 utility andflash the program with it. Use the file open command, select the **.bin** file that was created with the ***make*** file  and, select the oprion **Program and Verify** this should load the program, verify it and after that reset the device so it start to run(there are some settings that control this so make sure to check these!)
 </details>
+<br />
 
 ---
 
