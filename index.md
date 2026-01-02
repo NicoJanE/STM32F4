@@ -8,6 +8,8 @@ RefPages:
 
 # STM32 <span style="color: #409EFF; font-size: 0.6em; font-style: italic;"> -  Docker bare-metal C/C++ project Container</span>
 
+![MIT License](https://img.shields.io/badge/License-MIT-green) ![Commercial Services Available](https://img.shields.io/badge/Services-Optional-blue)
+
 ## ℹ️ Introduction
 
 A minimal yet flexible bare-metal C/C++ project for STM32F4-Discovery and related STM32F4 devices.
@@ -45,12 +47,9 @@ This project serves as a clean, extensible foundation for low-level STM32 develo
 
 Here the information for the Docker container, as well as build and development instructions for use with **Visual Studio Code**, can be found. <sub> [click here for local](./Howtos/howto_create_a_dev_container)  </sub>
 
-#### *Alternative DTS containers can be found here: [remote](https://nicojane.github.io/Docker-Template-Stacks-Home/)*
+<span style="color: #6d757dff; font-size: 13px; font-style: italic;"> 
+<i><b>License</b><br>This file is part of: **STM32 Template Stack**  Copyright (c) 2025-2026 Nico Jan Eelhart.This repository is [MIT licensed](MIT-license.md) and free to use. For optional commercial support, customization, training, or long-term maintenance, see [COMMERCIAL.md](COMMERCIAL.md).</i>
+</span>
 
 <br>
-
-<sub> This file is part of: *STM32 Template Stack*
-Copyright (c) 2025 Nico Jan Eelhart. This source code is licensed under the MIT License found in the  'LICENSE.md' file in the root directory of this source tree.
-</sub>
-
 <p align="center">─── ✦ ───</p>
