@@ -4,17 +4,6 @@ RefPages:
  - howto_create_A_dev_container
 ---
 
-<small>
-<br><br>
-_This file is part of: **STM32F4 Template Stack**_
-_Copyright (c) 2025 Nico Jan Eelhart_
-_This source code is licensed under the MIT License found in the  'LICENSE.md' file in the root directory of this source tree._
-<br><br>
-_Some header files in this project are © STMicroelectronics and used under their permissive license. See license notices in each file, and refer to:
-https://www.st.com/en/microcontrollers-microprocessors/stm32f4-series.html_
-</small>
-<br><br>
-
 # Debug Output in Terminal via USART
 
 ## 1 Output
@@ -30,17 +19,17 @@ When `USART2_Init(...)` is called during the initialization phase of your progra
 ```C
 printf("Debug this variable: %s\r\n",var1);     // Note the \r\n instead of just \n
 puts("Enter function: HelloWorld()\r\n ");
-
-````
+```
 
 The output will appear in a terminal emulator like **PuTTY**, provided the hardware and serial connection are correctly configured.
 
 📍 More documentation can be found in the above meantioned `syscalls.c` file.
 
 ## 2 Input
+
 Just like output above the `syscalls.c` also implements the system function: `int _read(...)` which makes sure you can ask for input in your **PuTTy** terminal with scanf function or by calling the function direct.
 
-```
+``` bash
 char name[50];   
 unsigned  len = 50;    
 _read(0, name, len);        // CR Return will end the input
@@ -81,3 +70,11 @@ Once everything is connected and the program runs, output from the device will a
 [alternative 2](https://www.amazon.nl/AZDelivery-Converter-HW-598-compatibel-Inclusief/dp/B089QJZ51Z) )
 >
 >In Device Manager it shows up like: **Silicon Labs CP210x usa to UART Bridge (COM3)**
+<br>
+
+<span style="color: #6d757dff; font-size: 13px; font-style: italic;"> 
+<i><b>License</b><br>This file is part of: **STM32 Template Stack**  Copyright (c) 2025-2026 Nico Jan Eelhart.This repository is [MIT licensed](MIT-license.md) and free to use. For optional commercial support, customization, training, or long-term maintenance, see [COMMERCIAL.md](COMMERCIAL.md).</i>
+</span>
+
+<br>
+<p align="center">─── ✦ ───</p>
